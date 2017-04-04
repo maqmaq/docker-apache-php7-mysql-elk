@@ -1,0 +1,14 @@
+version: '2'
+services:
+  symfony:
+    container_name: local-symfony
+    ports:
+      - "8080:80"
+    environment:
+      APPLICATION_ENV: dev
+  mysql:
+    container_name: local-mysql
+  elk:
+    container_name: local-elk
+    ports:
+      - "8081:80"

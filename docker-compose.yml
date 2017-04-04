@@ -1,0 +1,23 @@
+version: '2'
+services:
+  symfony:
+    restart: always
+    build: symfony/apache
+    expose:
+      - 80
+    volumes:
+      - ./symfony/www/:/var/www/html
+  mysql:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database
+  elk:
+      image: willdurand/elk
+      volumes:
+          - ./elk/logstash:/etc/logstash
+          - ./elk/logstash/patterns:/opt/logstash/patterns
+      volumes_from:
+          - symfony

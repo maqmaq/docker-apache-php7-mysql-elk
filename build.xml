@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="project-name" default="info">
+    <target name="info" description="Print usage information">
+        <echo>Please specify a target or run -l to list all targets</echo>
+    </target>
+    <target name="docker:local:up" description="Setup container on local env">
+        <phingcall target="docker:up">
+            <property name="config-file" value="docker-compose.local.yml"></property>
+        </phingcall>
+    </target>
+    <target name="docker:local:start" description="Start container on local env">
+        <phingcall target="docker:start">
+            <property name="config-file" value="docker-compose.local.yml"></property>
+        </phingcall>
+    </target>
+    <target name="docker:local:stop" description="Stop container on local env">
+        <phingcall target="docker:stop">
+            <property name="config-file" value="docker-compose.local.yml"></property>
+        </phingcall>
+    </target>
+    <target name="docker:local:rm" description="Remove container on local env">
+        <phingcall target="docker:rm">
+            <property name="config-file" value="docker-compose.local.yml"></property>
+        </phingcall>
+    </target>
+    <target name="docker:local:build" description="Build container on local env">
+        <phingcall target="docker:build">
+            <property name="config-file" value="docker-compose.local.yml"></property>
+        </phingcall>
+    </target>
+    <target name="docker:up">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="-f ${config-file}"/>
+            <arg line="up -d"/>
+        </exec>
+    </target>
+    <target name="docker:start">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="-f ${config-file}"/>
+            <arg line="start"/>
+        </exec>
+    </target>
+    <target name="docker:stop">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="-f ${config-file}"/>
+            <arg line="stop"/>
+        </exec>
+    </target>
+    <target name="docker:rm">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="-f ${config-file}"/>
+            <arg line="rm -f"/>
+        </exec>
+    </target>
+    <target name="docker:build">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="-f ${config-file}"/>
+            <arg line="build"/>
+        </exec>
+    </target>
+</project>

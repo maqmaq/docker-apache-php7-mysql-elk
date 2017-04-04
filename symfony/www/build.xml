@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="symfony-app" default="info">
+    <target name="info" description="Print usage information">
+        <echo>Set up</echo>
+    </target>
+    <target name="update-dev" description="Update on development environment">
+        <phingcall target="info" />
+    </target>
+    <target name="update-production" description="Update on production environment">
+        <phingcall target="info" />
+    </target>
+
+</project>
